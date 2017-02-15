@@ -1,0 +1,6 @@
+body{
+    background-image: url('../img/rly.jpg');
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+	background-size: 50% auto;
+}
