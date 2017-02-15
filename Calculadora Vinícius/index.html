@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculadora</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="fonts/glyphicons-halflings-regular.woff">
+	<link rel="stylesheet" href="fonts/glyphicons-halflings-regular.woff2">
+	<link rel="stylesheet" href="fonts/glyphicons-halflings-regular.ttf">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/javascript.js"></script>
+</head>
+<body>
+	
+	<div class="container">
+		<div class="calculadora">
+			<h3>CALCULADORA</h3>
+
+		    <input type="text" id="display" readonly>
+
+		    <br/>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverOi()">Oi</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="abreP()">(</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="fechaP()">)</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="apagarTela()">
+				<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+			</button>
+			<br/>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela7()">7</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela8()">8</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela9()">9</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverVezes()">*</button>
+			<br/>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela4()">4</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela5()">5</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela6()">6</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverDividido()">/</button>
+			<br/>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela1()">1</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela2()">2</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela3()">3</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverMenos()">-</button>
+			<br/>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverPonto()">.</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverTela0()">0</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="resultado()">=</button>
+			<button class="btn btn-warning btn-lg col-md-3" type="submit" onclick="escreverMais()">+</button>
+
+		</div>
+	</div>
+</body>
+</html>

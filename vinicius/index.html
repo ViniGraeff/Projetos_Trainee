@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Dados Pessoais</title>
+		<!--<link rel="stylesheet" href="css/bootstrap.css">-->
+		<link rel="stylesheet" href="css/style.css">
+		<link href="img/icon.png" rel="icon" type="image/jpg">
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<!--<script src="js/bootstrap.js"></script>-->
+		<!--<script src="js/npm.js"></script>-->
+		<script src="js/script.js"></script>
+	</head>
+
+	<body>
+		<div id="div1" class="centerandcolor">
+			<h1 style= "color:white">Vinícius Graeff Stürmer</h1>
+			<p>Data de nascimento: 07/05/1998.</p>
+			<p>Email: vinicius.sturmer@digitaldesk.com.br</p>
+			<p>Telefone: (51) 99512-3666.</p>
+		</div>
+
+		<div class="foto" id="div2">
+			<img src="img/Foto.png" id="p1" alt= "Foto Vinícius Graeff" style="width:180px;height:180px";>
+		</div>
+
+		<div class="CENTRALIZA" id="div3">
+			<h1 style= "color:white">Sobre mim</h1>
+		</div>
+
+		<center>
+			<div class="colunas" id="div4">
+				<div class="borda">
+					<h2 style= "color:white">Séries</h2>
+					<p>Prison Break</p>
+					<p>Supernatural</p>
+					<p>Stranger Things</p>
+				</div>
+
+				<div class="borda">
+					<h2 style= "color:white">Jogos</h2>
+					<p>Rocket League</p>
+					<p>God of War</p>
+					<p>CS:GO</p>
+				</div>
+
+				<div class="borda">
+					<h2 style= "color:white">Músicas/Bandas</h2>
+					<p>Arctic Monkeys</p>
+					<p>The Neighborhood</p>
+					<p>Alok</p>
+				</div>
+			</div>
+		</center>
+		<div class="well">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_shortname = 'traineedigitaldesk';
+                function disqus_config() {
+                  this.callbacks.afterRender.push(function() { alert('awais') });
+                }
+
+                var disqus_identifier = "image_".concat(12);
+                var disqus_title = "image_title".concat(12);
+
+                (function () {
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript';
+                    dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments
+              </a></noscript>
+        </div>
+        <script id="dsq-count-scr" src="//traineedigitaldesk.disqus.com/count.js" async></script>
+	</body>
+</html>

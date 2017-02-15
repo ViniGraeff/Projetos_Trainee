@@ -1,0 +1,12 @@
+.navega{
+	width:70%;
+	margin: auto;
+	color: white;
+}
+
+body{
+    background-image: url('../img/picole.gif');
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+	background-size: 100% auto;
+}
