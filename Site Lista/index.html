@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lista</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="fonts/glyphicons-halflings-regular.woff">
 	<link rel="stylesheet" href="fonts/glyphicons-halflings-regular.woff2">
@@ -54,28 +54,76 @@
 	</div>
 
 	<div class="navega">
-		<div class="container-fluid"><!-- Início da Lista-->
-		  <h2>Lista</h2>
-			  <table class="table table-hover table-bordered">
-			    <thead>
-			      <tr></tr>
-			      <tr>
-			        <th>#</th>
-			        <th>Nome</th>
-			        <th>Valor</th>
-			        <th>Status</th>
-			        <th>Estoque</th>
-			        <th>Editar</th>
-			        <th>Remover</th>
-			      </tr>
-			    </thead>
-			    <tbody id="table">
-			      
-			    </tbody>
-			    <tr></tr>
-			  </table>
-		</div><!-- Fim da Lista-->
-	</div>
+	
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
 
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="row">
+				    <div class="col-md-4">
+						<div class="form-group">
+							<label for="Nome">Nome</label>
+							<input type="text" class="form-control" id="nome" placeholder="Nome">
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="Valor">Valor</label>
+							<input type="text" class="form-control" id="valor" placeholder="Valor">
+						</div>
+					</div>
+					<div class="col-md-4">
+						<label for="Status">Status</label>
+				    	<select class="form-control" id="status">
+							<option>Ativo</option>
+							<option>Inativo</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="Estoque">Estoque</label>
+							<input type="text" class="form-control" id="estoque" placeholder="Estoque">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="Adicionar">Adicionar</label>
+						<br/>
+						<button type="button" class="btn btn-default btn-md" onclick="adiciona()"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+				
+		<div class="row">
+			<div class="col-md-12">
+				<div class="container-fluid"><!-- Início da Lista-->
+					<h2>Lista</h2>
+
+					<table class="table table-hover table-bordered">
+					    <thead>
+					    	<tr></tr>
+					    	<tr>
+					        	<th>#</th>
+					        	<th>Nome</th>
+					        	<th>Valor</th>
+					        	<th>Status</th>
+					        	<th>Estoque</th>
+					        	<th>Editar</th>
+					        	<th>Remover</th>
+					    	</tr>
+					    </thead>
+						<tbody id="table">
+					      
+					    </tbody>
+					    <tr></tr>
+					</table>
+				</div><!-- Fim da Lista-->
+			</div>
+		</div>
+	</div>
 </body>
 </html>
