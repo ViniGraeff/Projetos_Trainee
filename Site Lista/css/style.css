@@ -17,3 +17,21 @@ body{
 input{
 	background-color:grey;
 }
+
+/* For the "inset" look only */
+html {
+    overflow: auto;
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #050b0b;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 0;
+}
