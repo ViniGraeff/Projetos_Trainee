@@ -1,4 +1,4 @@
-var text, aux;
+var text, aux, num;
 var ID, NOME, VALOR, STATUS, ESTOQUE;
 
 
@@ -11,17 +11,6 @@ $(document).ready(function(){
         	$('#table').append('<tr><td>'+text[i].id+'</td><td>'+text[i].nome+'</td><td>'+'R$ '+text[i].valor+'</td><td>'+text[i].status+'</td><td>'+text[i].estoque+'</td><td>'+'<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="modal" data-target="#abrir" onclick="preencher('+i+')"></span></button>'+'</td><td>'+'<button type="button" class="btn btn-default btn-sm"  onclick="deleta('+aux+')"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>'+'</td></tr>');
         }
     });
-
-    limpa = function(){
-    $('#table').empty();
-    $.get("http://192.168.1.171:3000/product", function(data) {
-            text=data;
-            for(var i=0;i<text.length;i++){
-                aux=text[i].id;
-                $('#table').append('<tr><td>'+text[i].id+'</td><td>'+text[i].nome+'</td><td>'+'R$ '+text[i].valor+'</td><td>'+text[i].status+'</td><td>'+text[i].estoque+'</td><td>'+'<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="modal" data-target="#abrir" onclick="preencher('+i+')"></span></button>'+'</td><td>'+'<button type="button" class="btn btn-default btn-sm"  onclick="deleta('+aux+')"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>'+'</td></tr>');
-            }
-        });
-    }
 
     adiciona = function (){
         NOME = document.getElementById('nome').value;
