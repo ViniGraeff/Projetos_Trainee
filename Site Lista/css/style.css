@@ -1,8 +1,12 @@
 .navega{
 	width:70%;
 	margin: auto;
-	color: white;
 }
+
+.lista{
+	color:white;
+}
+
 
 body{
     background-image: url('../img/picole.gif');
