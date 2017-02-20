@@ -6,6 +6,12 @@
 .lista{
 	color:white;
 }
+#ativos{
+  cursor: pointer;
+}
+#inativos{
+  cursor: pointer;
+}
 
 
 body{
