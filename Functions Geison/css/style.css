@@ -1,0 +1,8 @@
+html, body{
+	margin:30px;
+}
+
+label, input[type="text"], button{
+	display: block;
+	margin-bottom: 10px;
+}
