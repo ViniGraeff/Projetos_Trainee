@@ -1,6 +1,7 @@
-var text, aux, num, str, ID, NOME, VALOR, STATUS, ESTOQUE, flag=0;
+var text, aux, str, NOME, VALOR, STATUS, ESTOQUE, flag=0;
 
 print = function(){
+	$('#table').empty();
 	$.get("http://192.168.1.171:3000/product", function(data) {
 		text=data;
 		for(var i=0;i<text.length;i++){
@@ -30,10 +31,7 @@ save = function(){
 }
 
 adiciona = function (){
-	NOME = document.getElementById('nome').value;
-	VALOR = document.getElementById('valor').value;
-	STATUS = document.getElementById('status').value;
-	ESTOQUE = document.getElementById('estoque').value;
+	save();
 	$.ajax({
 		type: 'POST',
 		dataType: 'json',
@@ -47,34 +45,40 @@ adiciona = function (){
 	});
 }
 
-$(document).ready(function(){
-	$('#table').empty();
+edita = function(){ 
+	save();
+	var ID = preencher();
+	$.ajax({
+		type: 'PUT',
+		dataType: 'json',
+		url: "http://192.168.1.171:3000/product/"+ID,
+		data: {
+			nome: NOME,
+			valor: VALOR,
+			status: STATUS,
+			estoque: ESTOQUE
+		}
+	});
+}
+
+deleta = function(x){
+	$.ajax({
+		type: 'DELETE',
+		url: "http://192.168.1.171:3000/product/" + x
+	});
 	print();
+}
 
+preencher = function(z){
+	document.getElementById('nome').value = text[z].nome;
+	document.getElementById('valor').value = text[z].valor;
+	document.getElementById('status').value = text[z].status;
+	document.getElementById('estoque').value = text[z].estoque;
+	var ID = text[z].id;
+	return val;
+}
 
-	edita = function(){ 
-		save();
-		$.ajax({
-			type: 'PUT',
-			dataType: 'json',
-			url: "http://192.168.1.171:3000/product/"+ID,
-			data: {
-				nome: NOME,
-				valor: VALOR,
-				status: STATUS,
-				estoque: ESTOQUE
-			}
-		});
-	}
-
-	preencher = function(z){
-		document.getElementById('nome').value = text[z].nome;
-		document.getElementById('valor').value = text[z].valor;
-		document.getElementById('status').value = text[z].status;
-		document.getElementById('estoque').value = text[z].estoque;
-		ID = text[z].id;
-	}
-
+actions = function(){
 	$("#modalclean").click(function(){
 		document.getElementById('nome').value = "";
 		document.getElementById('valor').value = "";
@@ -84,11 +88,12 @@ $(document).ready(function(){
 
 	$("#adiciona").mouseup(function(){
 		adiciona();
-		location.reload(true);
+		print();
 	});
 
 	$("#editar").mouseup(function(){
 		edita();
+		print();
 	});
 
 	$("#ativos").mouseup(function(){
@@ -102,22 +107,22 @@ $(document).ready(function(){
 		flag=1;
 		print();
 	});
-
-	deleta = function(x){
-		$.ajax({
-			type: 'DELETE',
-			url: "http://192.168.1.171:3000/product/" + x
-		});
-		location.reload(true);
-	}
-
-});
+}
 
 function isNumberKey(evt)
 {
 	var charCode = (evt.which) ? evt.which : evt.keyCode;
 	if (charCode != 46 && charCode > 31 
 		&& (charCode < 48 || charCode > 57))
+		return false;
+
+		return true;
+}
+
+function isNumberKey1(evt)
+{
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+	if (charCode >= 48 && charCode <= 57)
 		return false;
 
 		return true;
@@ -133,11 +138,7 @@ function isNumberKey2(evt)
 		return true;
 }
 
-function isNumberKey1(evt)
-{
-	var charCode = (evt.which) ? evt.which : evt.keyCode;
-	if (charCode >= 48 && charCode <= 57)
-		return false;
-
-		return true;
-}
+$(document).ready(function(){
+	print();
+	actions();
+});
