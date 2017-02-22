@@ -1,8 +1,10 @@
-var text, aux, str, NOME, VALOR, STATUS, ESTOQUE, flag=0;
+var text, aux, str, NOME, VALOR, STATUS, ESTOQUE, flag=0, flag2=0;
+
+var servidor="http://192.168.1.172:3000/product";
 
 print = function(){
 	$('#table').empty();
-	$.get("http://192.168.1.171:3000/product", function(data) {
+	$.get(servidor, function(data) {
 		text=data;
 		for(var i=0;i<text.length;i++){
 			aux=text[i].id;
@@ -21,6 +23,7 @@ print = function(){
 			}
 		}
 	});
+	console.log("printou");
 }
 
 save = function(){
@@ -32,40 +35,64 @@ save = function(){
 
 adiciona = function (){
 	save();
-	$.ajax({
-		type: 'POST',
-		dataType: 'json',
-		url: "http://192.168.1.171:3000/product/",
-		data: {
-			nome: NOME,
-			valor: VALOR,
-			status: STATUS,
-			estoque: ESTOQUE
-		}
-	});
+	if(NOME=="" || VALOR=="" || STATUS=="" || ESTOQUE==""){
+
+	}else{
+		$.ajax({
+			type: 'POST',
+			dataType: 'json',
+			url: servidor,
+			data: {
+				nome: NOME,
+				valor: VALOR,
+				status: STATUS,
+				estoque: ESTOQUE
+			}
+		});
+		print();
+	}
 }
 
 edita = function(){ 
 	save();
-	var ID = preencher();
-	$.ajax({
-		type: 'PUT',
-		dataType: 'json',
-		url: "http://192.168.1.171:3000/product/"+ID,
-		data: {
-			nome: NOME,
-			valor: VALOR,
-			status: STATUS,
-			estoque: ESTOQUE
-		}
+	if(NOME=="" || VALOR=="" || STATUS=="" || ESTOQUE==""){
+
+	}else{
+		$.ajax({
+			type: 'PUT',
+			dataType: 'json',
+			url: servidor+"/"+ID,
+			data: {
+				nome: NOME,
+				valor: VALOR,
+				status: STATUS,
+				estoque: ESTOQUE
+			}
+		});
+		print();
+	}
+}
+
+noPaste = function(){
+	$('#nome').bind("cut copy paste",function(e) {
+	e.preventDefault();
+	});
+
+	$('#valor').bind("cut copy paste",function(e) {
+	e.preventDefault();
+	});
+
+	$('#estoque').bind("cut copy paste",function(e) {
+	e.preventDefault();
 	});
 }
 
 deleta = function(x){
 	$.ajax({
 		type: 'DELETE',
-		url: "http://192.168.1.171:3000/product/" + x
+		url: servidor +"/"+ x
 	});
+	console.log("deletou");
 	print();
 }
 
@@ -74,39 +101,75 @@ preencher = function(z){
 	document.getElementById('valor').value = text[z].valor;
 	document.getElementById('status').value = text[z].status;
 	document.getElementById('estoque').value = text[z].estoque;
-	var ID = text[z].id;
-	return val;
+	ID = text[z].id;
+	flag2 = 1;
+	tituloModal();
+	hideButton();
+}
+
+mudarTitulo = function(){
+	if(flag==0){
+		document.getElementById('titulo').innerHTML = "Lista de Itens Ativos";
+	}else{
+		document.getElementById('titulo').innerHTML = "Lista de Itens Inativos";
+	}
+}
+
+tituloModal = function(){
+	if(flag2==0){
+		document.getElementById('tituloModal').innerHTML = "Adicionar Itens";
+	}else{
+		document.getElementById('tituloModal').innerHTML = "Editar Itens";
+	}
+}
+
+hideButton = function(){
+	if(flag2==0){
+	$("#adiciona").show();
+	$("#editar").hide();
+	}else{
+	$("#adiciona").hide();
+	$("#editar").show();
+	}
+}
+
+mascara = function(){
+	$("#valor").maskMoney({showSymbol:true, symbol:"R$", decimal:".", thousands:""});
 }
 
 actions = function(){
 	$("#modalclean").click(function(){
 		document.getElementById('nome').value = "";
 		document.getElementById('valor').value = "";
-		document.getElementById('status').value = "";
 		document.getElementById('estoque').value = "";
+		flag2 = 0;
+		tituloModal();
+		hideButton();
 	});
 
 	$("#adiciona").mouseup(function(){
 		adiciona();
-		print();
 	});
 
 	$("#editar").mouseup(function(){
 		edita();
-		print();
 	});
 
 	$("#ativos").mouseup(function(){
 		$('#table').empty();
 		flag=0;
 		print();
+		mudarTitulo();
 	});
 
 	$("#inativos").mouseup(function(){
 		$('#table').empty();
 		flag=1;
 		print();
+		mudarTitulo();
 	});
+
+    $('[data-toggle="tooltip"]').tooltip(); 
 }
 
 function isNumberKey(evt)
@@ -139,6 +202,9 @@ function isNumberKey2(evt)
 }
 
 $(document).ready(function(){
+	mudarTitulo();
 	print();
 	actions();
+	noPaste();
+	mascara();
 });
