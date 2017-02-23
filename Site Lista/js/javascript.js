@@ -1,6 +1,6 @@
 var text, aux, str, NOME, VALOR, STATUS, ESTOQUE, flag=0, flag2=0;
 
-var servidor="http://192.168.1.172:3000/product";
+var servidor="http://192.168.1.168:3000/product";
 
 print = function(){
 	$('#table').empty();
@@ -47,9 +47,9 @@ adiciona = function (){
 				valor: VALOR,
 				status: STATUS,
 				estoque: ESTOQUE
-			}
+			},
+			success: print
 		});
-		print();
 	}
 }
 
@@ -67,9 +67,9 @@ edita = function(){
 				valor: VALOR,
 				status: STATUS,
 				estoque: ESTOQUE
-			}
+			},
+			success: print
 		});
-		print();
 	}
 }
 
@@ -90,10 +90,10 @@ noPaste = function(){
 deleta = function(x){
 	$.ajax({
 		type: 'DELETE',
-		url: servidor +"/"+ x
+		url: servidor +"/"+ x,
+		success: print
 	});
 	console.log("deletou");
-	print();
 }
 
 preencher = function(z){
@@ -137,11 +137,19 @@ mascara = function(){
 	$("#valor").maskMoney({showSymbol:true, symbol:"R$", decimal:".", thousands:""});
 }
 
+condicoes = function(){
+	$('#nome').keypress(isNumberKey1);
+	$('#valor').keypress(isNumberKey);
+	$('#estoque').keypress(isNumberKey2);
+}
+
 actions = function(){
+	condicoes();
+
 	$("#modalclean").click(function(){
-		document.getElementById('nome').value = "";
-		document.getElementById('valor').value = "";
-		document.getElementById('estoque').value = "";
+		$('#nome').val("");
+		$('#valor').val("");
+		$('#estoque').val("");
 		flag2 = 0;
 		tituloModal();
 		hideButton();
